@@ -2149,7 +2149,7 @@ h4 {
 }
 
 .floating-whatsapp:hover {
-    background-color: var(--color-whatsapp-dark);
+    background-color: #128C7E !important;
     transform: scale(1.08);
 }
 
