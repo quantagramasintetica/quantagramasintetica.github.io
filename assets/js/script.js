@@ -1,4 +1,4 @@
-﻿document.addEventListener('DOMContentLoaded', () => {
+document.addEventListener('DOMContentLoaded', () => {
     // ==========================================
     // 1. MENU MOBILE (HAMBÚRGUER)
     // ==========================================
@@ -75,42 +75,69 @@
     }
 
     // ==========================================
-    // 4. FILTROS DA GALERIA (PORTFÓLIO)
+    // 4. GALERIA DE FOTOS (EXIBIÇÃO COM BOTÃO VER MAIS)
     // ==========================================
-    const filterButtons = document.querySelectorAll('.filter-btn');
     const galleryItems = document.querySelectorAll('.portfolio-item');
+    const btnVerMais = document.getElementById('btn-ver-mais');
+    const maxInitialItems = 6;
 
-    if (filterButtons.length > 0 && galleryItems.length > 0) {
-        filterButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                const filterValue = button.getAttribute('data-filter');
+    if (galleryItems.length > 0) {
+        // Inicializar galeria ocultando itens excedentes
+        if (galleryItems.length > maxInitialItems) {
+            for (let i = maxInitialItems; i < galleryItems.length; i++) {
+                galleryItems[i].classList.add('hidden');
+                galleryItems[i].style.opacity = '0';
+                galleryItems[i].style.transform = 'scale(0.95)';
+            }
+        } else if (btnVerMais) {
+            // Se o total de imagens for menor ou igual ao limite inicial, oculta o botão
+            btnVerMais.style.display = 'none';
+        }
 
-                // Atualizar botão ativo
-                filterButtons.forEach(btn => btn.classList.remove('active'));
-                button.classList.add('active');
+        if (btnVerMais) {
+            btnVerMais.addEventListener('click', () => {
+                const isExpanded = btnVerMais.getAttribute('aria-expanded') === 'true';
 
-                // Filtrar os itens
-                galleryItems.forEach(item => {
-                    const itemCategory = item.getAttribute('data-category');
-
-                    if (filterValue === 'all' || itemCategory === filterValue) {
-                        item.classList.remove('hidden');
-                        // Transi�o suave de fade-in
-                        setTimeout(() => {
-                            item.style.opacity = '1';
-                            item.style.transform = 'scale(1)';
-                        }, 50);
-                    } else {
+                if (isExpanded) {
+                    // Recolher itens (Ver menos)
+                    for (let i = maxInitialItems; i < galleryItems.length; i++) {
+                        const item = galleryItems[i];
                         item.style.opacity = '0';
                         item.style.transform = 'scale(0.95)';
-                        // Adicionar hidden apÃ³s transiÃ§Ã£o terminar
                         setTimeout(() => {
                             item.classList.add('hidden');
                         }, 300);
                     }
-                });
+                    btnVerMais.textContent = 'Ver mais';
+                    btnVerMais.setAttribute('aria-expanded', 'false');
+
+                    // Rolar suavemente de volta para o início da galeria
+                    const targetElement = document.querySelector('#projetos');
+                    if (targetElement) {
+                        const headerOffset = 90;
+                        const elementPosition = targetElement.getBoundingClientRect().top;
+                        const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+                        window.scrollTo({
+                            top: offsetPosition,
+                            behavior: 'smooth'
+                        });
+                    }
+                } else {
+                    // Expandir itens (Ver mais)
+                    for (let i = maxInitialItems; i < galleryItems.length; i++) {
+                        const item = galleryItems[i];
+                        item.classList.remove('hidden');
+                        // Pequeno delay para a transição do CSS rodar perfeitamente
+                        setTimeout(() => {
+                            item.style.opacity = '1';
+                            item.style.transform = 'scale(1)';
+                        }, 50);
+                    }
+                    btnVerMais.textContent = 'Ver menos';
+                    btnVerMais.setAttribute('aria-expanded', 'true');
+                }
             });
-        });
+        }
     }
 
     // ==========================================
