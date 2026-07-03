@@ -1732,18 +1732,6 @@ h4 {
     overflow: hidden;
 }
 
-.showroom-feedback-card::before {
-    content: "â€œ";
-    position: absolute;
-    top: 5px;
-    right: 20px;
-    font-size: 8rem;
-    font-family: var(--font-headings);
-    color: var(--color-brand);
-    opacity: 0.08;
-    line-height: 1;
-    pointer-events: none;
-}
 
 .showroom-feedback-card:hover {
     transform: translateY(-5px);
