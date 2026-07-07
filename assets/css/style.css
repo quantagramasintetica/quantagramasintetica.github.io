@@ -1319,7 +1319,7 @@ h4 {
     border-color: rgba(41, 99, 27, 0.1);
 }
 
-.about-feat-item h4 {
+.about-feat-item h3 {
     font-size: 1.05rem;
     color: var(--color-brand);
     margin-bottom: 6px;
@@ -1764,7 +1764,7 @@ h4 {
     margin-bottom: 24px;
 }
 
-.fb-author-showroom h4 {
+.fb-author-showroom h3 {
     font-size: 0.95rem;
     margin-bottom: 2px;
 }
@@ -1821,7 +1821,7 @@ h4 {
     text-align: left;
 }
 
-.faq-header-btn h3 {
+.faq-item h3 {
     font-size: 1.1rem;
     margin-bottom: 0;
     font-weight: 600;
