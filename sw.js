@@ -4,7 +4,9 @@ const ASSETS_TO_CACHE = [
   './index.html',
   './assets/css/style.min.css?v=2.0.7',
   './assets/js/script.js',
-  './assets/images/cropped-Imagem-do-WhatsApp-de-2024-08-26-as-13.20.29_8ec738d5-32x32.jpg'
+  './assets/images/cropped-Imagem-do-WhatsApp-de-2024-08-26-as-13.20.29_8ec738d5-e1724902928833.webp',
+  './assets/images/grama-mobile.webp',
+  './assets/images/google-qskszi10s4g8ys6coqa37lzfgw2qw0goj0d6k7yqo0.webp'
 ];
 
 // Install Event

@@ -126,6 +126,19 @@ document.addEventListener('DOMContentLoaded', () => {
                     // Expandir itens (Ver mais)
                     for (let i = maxInitialItems; i < galleryItems.length; i++) {
                         const item = galleryItems[i];
+                        
+                        // Carregar imagens dinamicamente ao expandir
+                        const sources = item.querySelectorAll('source[data-srcset]');
+                        sources.forEach(source => {
+                            source.setAttribute('srcset', source.getAttribute('data-srcset'));
+                            source.removeAttribute('data-srcset');
+                        });
+                        const imgs = item.querySelectorAll('img[data-src]');
+                        imgs.forEach(img => {
+                            img.setAttribute('src', img.getAttribute('data-src'));
+                            img.removeAttribute('data-src');
+                        });
+                        
                         item.classList.remove('hidden');
                         // Pequeno delay para a transição do CSS rodar perfeitamente
                         setTimeout(() => {
