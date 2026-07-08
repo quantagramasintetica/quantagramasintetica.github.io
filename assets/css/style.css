@@ -6,13 +6,13 @@
     /* Cores do briefing */
     --color-brand: #29631B;
     --color-brand-dark: #28581D;
-    --color-cta: #19920E;
-    --color-cta-hover: #13770a;
+    --color-cta: #17890d;
+    --color-cta-hover: #126e0a;
     --color-brand-light: #D3F8E2;
     --color-white: #FFFFFF;
     --color-bg-light: #F7F7F7;
     --color-text-main: #252917;
-    --color-text-secondary: #5F6555;
+    --color-text-secondary: #4b5142;
 
     /* Acentos para Gramas Coloridas */
     --color-magenta: #D63384;
@@ -400,9 +400,9 @@ h4 {
 }
 
 @keyframes shine-animation {
-    0% { left: -50%; }
-    30% { left: 150%; }
-    100% { left: 150%; }
+    0% { transform: skewX(-25deg) translate3d(0, 0, 0); }
+    30% { transform: skewX(-25deg) translate3d(300px, 0, 0); }
+    100% { transform: skewX(-25deg) translate3d(300px, 0, 0); }
 }
 
 .header .container {
@@ -1914,15 +1914,12 @@ h4 {
 
 @keyframes final-cta-pulse {
     0% {
-        box-shadow: 0 0 0 0 rgba(25, 146, 14, 0.6);
         transform: scale(1);
     }
-    70% {
-        box-shadow: 0 0 0 15px rgba(25, 146, 14, 0);
-        transform: scale(1.02);
+    50% {
+        transform: scale(1.03);
     }
     100% {
-        box-shadow: 0 0 0 0 rgba(25, 146, 14, 0);
         transform: scale(1);
     }
 }
@@ -2142,13 +2139,13 @@ h4 {
    ========================================== */
 @keyframes pulse {
     0% {
-        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.5);
+        transform: scale(1);
     }
-    70% {
-        box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+    50% {
+        transform: scale(1.06);
     }
     100% {
-        box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+        transform: scale(1);
     }
 }
 

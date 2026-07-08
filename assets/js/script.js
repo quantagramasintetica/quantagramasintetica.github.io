@@ -153,25 +153,29 @@ document.addEventListener('DOMContentLoaded', () => {
             button.addEventListener('click', () => {
                 const isOpen = item.classList.contains('active');
 
-                // Fechar outros itens abertos
-                faqItems.forEach(otherItem => {
-                    if (otherItem !== item && otherItem.classList.contains('active')) {
-                        otherItem.classList.remove('active');
-                        otherItem.querySelector('.faq-body').style.maxHeight = '0';
-                        otherItem.querySelector('.faq-header-btn').setAttribute('aria-expanded', 'false');
-                    }
-                });
+                 // Fechar outros itens abertos
+                 faqItems.forEach(otherItem => {
+                     if (otherItem !== item && otherItem.classList.contains('active')) {
+                         otherItem.classList.remove('active');
+                         const otherBody = otherItem.querySelector('.faq-body');
+                         otherBody.style.maxHeight = '0';
+                         otherBody.setAttribute('aria-hidden', 'true');
+                         otherItem.querySelector('.faq-header-btn').setAttribute('aria-expanded', 'false');
+                     }
+                 });
 
-                // Alternar estado do item clicado
-                if (isOpen) {
-                    item.classList.remove('active');
-                    body.style.maxHeight = '0';
-                    button.setAttribute('aria-expanded', 'false');
-                } else {
-                    item.classList.add('active');
-                    body.style.maxHeight = body.scrollHeight + 'px';
-                    button.setAttribute('aria-expanded', 'true');
-                }
+                 // Alternar estado do item clicado
+                 if (isOpen) {
+                     item.classList.remove('active');
+                     body.style.maxHeight = '0';
+                     body.setAttribute('aria-hidden', 'true');
+                     button.setAttribute('aria-expanded', 'false');
+                 } else {
+                     item.classList.add('active');
+                     body.style.maxHeight = body.scrollHeight + 'px';
+                     body.setAttribute('aria-hidden', 'false');
+                     button.setAttribute('aria-expanded', 'true');
+                 }
             });
         }
     });
@@ -227,3 +231,12 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 });
+
+// Register Service Worker for offline support and network independent performance
+if ('serviceWorker' in navigator) {
+    window.addEventListener('load', () => {
+        navigator.serviceWorker.register('./sw.js')
+            .then(reg => console.log('Service Worker registered successfully:', reg.scope))
+            .catch(err => console.log('Service Worker registration failed:', err));
+    });
+}
