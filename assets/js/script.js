@@ -256,3 +256,20 @@ if ('serviceWorker' in navigator) {
         }, 3500);
     });
 }
+
+
+// Unregister any active Service Workers and clear caches to ensure pristine mobile loading
+if ('serviceWorker' in navigator) {
+    navigator.serviceWorker.getRegistrations().then((registrations) => {
+        for (let registration of registrations) {
+            registration.unregister();
+        }
+    });
+    if (window.caches) {
+        caches.keys().then((names) => {
+            for (let name of names) {
+                caches.delete(name);
+            }
+        });
+    }
+}
